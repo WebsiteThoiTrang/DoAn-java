@@ -1,0 +1,73 @@
+<header class="header" th:fragment="header" xmlns:th="http://www.thymeleaf.org">
+    <div class="header__top">
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-6 col-md-7">
+                    <div class="header__top__left">
+                        <a href="#"><i class="fa fa-phone"></i> +0965868425</a>
+                        <a href="#"><i class="fa fa-envelope-o"></i> abc@email.com</a>
+                        <a href="#"><i class="fa fa-map-marker"></i> 180 Binh Thanh</a>
+                    </div>
+                </div>
+                <style>
+                    .header__top__left a {
+                        color: white;
+                        margin-right: 10px;
+                    }
+                    .header__top__links .fa-user-o {
+                    margin-right: 5px;
+                    }
+
+                </style>
+                <div class="col-lg-6 col-md-5">
+                    <div class="header__top__right">
+                        <div class="header__top__links">
+                            <a th:href="@{login}"><i class="fa fa-user-o"></i>My Account</a>
+                        </div>
+                        <div class="header__top__hover">
+                            <span>VND<i class=""></i></span>
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-3 col-md-3">
+                <div class="header__logo">
+                    <a th:href="@{home}"><img th:src="@{root/img/logo.png}" alt=""></a>
+                </div>
+            </div>
+            <div class="col-lg-6 col-md-6">
+                <nav class="header__menu mobile-menu">
+                    <ul>
+                        <li class="active"><a th:href="@{home}">Home</a></li>
+                        <li><a th:href="@{product}">Product</a></li>
+                        <!--<li><a th:href="@{page}">Pages</a>
+                            <ul class="dropdown">
+                                <li><a href="./about.html">About Us</a></li>
+                                <li><a href="./shop-details.html">Shop Details</a></li>
+                                <li><a href="./shopping-cart.html">Shopping Cart</a></li>
+                                <li><a href="./checkout.html">Check Out</a></li>
+                                <li><a href="./blog-details.html">Blog Details</a></li>
+                            </ul>
+                        </li>-->
+                        <li><a th:href="@{blog}">Blog</a></li>
+                        <li><a th:href="@{contact}">Contacts</a></li>
+                    </ul>
+                </nav>
+            </div>
+            <div class="col-lg-3 col-md-3">
+                <div class="header__nav__option">
+                    <a href="#" class="search-switch"><img th:src="@{root/img/icon/search.png}" alt=""></a>
+                    <a href="#"><img th:src="@{root/img/icon/heart.png}" alt=""></a>
+                    <a th:href="@{cart}"><img th:src="@{root/img/icon/cart.png}" alt=""> <span>0</span></a>
+                    <div class="price">$0.00</div>
+                </div>
+            </div>
+        </div>
+        <div class="canvas__open"><i class="fa fa-bars"></i></div>
+    </div>
+</header>
