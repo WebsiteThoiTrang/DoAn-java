@@ -11,6 +11,7 @@
                     <img src="assets/images/logo-icon.png" alt="logo icon">
                 </div>
                 <div class="card-title text-uppercase text-center py-3">Sign Up</div>
+
                 <form th:action="@{/register}" th:object="${user}" method="post">
                     <!-- form fields -->
 
@@ -22,7 +23,11 @@
                                 <i class="icon-user"></i>
                             </div>
                         </div>
+                        <div th:if="${#fields.hasErrors('username')}" class="alert alert-danger mt-2">
+                            <p th:each="err : ${#fields.errors('username')}" th:text="${err}"></p>
+                        </div>
                     </div>
+
                     <div class="form-group">
                         <label for="exampleInputEmailId" class="sr-only">Email ID</label>
                         <div class="position-relative has-icon-right">
@@ -31,7 +36,11 @@
                                 <i class="icon-envelope-open"></i>
                             </div>
                         </div>
+                        <div th:if="${#fields.hasErrors('email')}" class="alert alert-danger mt-2">
+                            <p th:each="err : ${#fields.errors('email')}" th:text="${err}"></p>
+                        </div>
                     </div>
+
                     <div class="form-group">
                         <label for="exampleInputPhone" class="sr-only">Phone</label>
                         <div class="position-relative has-icon-right">
@@ -40,7 +49,11 @@
                                 <i class="icon-phone"></i>
                             </div>
                         </div>
+                        <div th:if="${#fields.hasErrors('phone')}" class="alert alert-danger mt-2">
+                            <p th:each="err : ${#fields.errors('phone')}" th:text="${err}"></p>
+                        </div>
                     </div>
+
                     <div class="form-group">
                         <label for="exampleInputPassword" class="sr-only">Password</label>
                         <div class="position-relative has-icon-right">
@@ -49,7 +62,11 @@
                                 <i class="icon-lock"></i>
                             </div>
                         </div>
+                        <div th:if="${#fields.hasErrors('password')}" class="alert alert-danger mt-2">
+                            <p th:each="err : ${#fields.errors('password')}" th:text="${err}"></p>
+                        </div>
                     </div>
+
                     <div class="form-group">
                         <div class="icheck-material-white">
                             <input type="checkbox" id="user-checkbox" checked />

@@ -36,7 +36,7 @@ public class UserController {
             bindingResult.rejectValue("email", "error.user", "Email đã tồn tại");
         }
         if (userService.phoneExists(user.getPhone())) { // Kiểm tra nếu phone đã tồn tại
-            bindingResult.rejectValue("Phone", "error.user", "Phone đã tồn tại");
+            bindingResult.rejectValue("phone", "error.user", "Phone đã tồn tại");
         }
         if (userService.userExists(user.getUsername())) {
             bindingResult.rejectValue("username", "error.user", "Username đã tồn tại ");
