@@ -130,14 +130,14 @@ public class ProductAdminController {
         List<Category> categories = categoryService.getAllCategories();
         model.addAttribute("product", product);
         model.addAttribute("categories", categories);
-        return "admin/product/edit-product";
+        return "admin/product/products";
     }
 
     @PostMapping("/update/{id}")
     public String updateProduct(@PathVariable("id") Long id, @Valid Product product, BindingResult result, @RequestParam("imageFile") MultipartFile imageFile) {
         if (result.hasErrors()) {
             product.setId(id);
-            return "admin/product/edit-product";
+            return "admin/product/products";
         }
 
         if (!imageFile.isEmpty()) {

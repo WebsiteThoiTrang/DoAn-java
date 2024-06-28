@@ -1,6 +1,6 @@
 package com.nhom8.WebsiteThoiTrang.model;
 import jakarta.persistence.*;
-import lombok.Data;
+
 import java.util.Set;
 
 import jakarta.validation.constraints.*;
@@ -13,7 +13,7 @@ import org.springframework.security.core.authority.SimpleGrantedAuthority;
 import java.util.Collection;
 import java.util.HashSet;
 import java.util.Objects;
-import java.util.Set;
+
 
 @Data
 @Entity
