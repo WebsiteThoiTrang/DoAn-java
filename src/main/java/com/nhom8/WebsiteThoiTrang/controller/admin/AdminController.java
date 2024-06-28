@@ -11,9 +11,4 @@ public class AdminController {
         return "admin/index";
     }
 
-        @GetMapping("/admincontact")
-        public String AdminContact() {
-            return "admin/admincontact/index";
-        }
-
 }
