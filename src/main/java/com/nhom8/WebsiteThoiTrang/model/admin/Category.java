@@ -2,24 +2,37 @@ package com.nhom8.WebsiteThoiTrang.model.admin;
 import jakarta.persistence.*;
 import lombok.*;
 import java.util.Set;
-@Data
 @Entity
-@Table(name = "Category")
+@Table(name = "categories")
 public class Category {
+
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Column(name = "ID_CAT")
-    private int id;
-    @Column(name = "NAME_CAT", nullable = false)
+    private Long id;
+
+    @Column(name = "name", nullable = false)
     private String name;
-    @Column(name = "META")
-    private String meta;
-    @Column(name = "`ORDER`", nullable = false)
-    private int order;
-    @Column(name = "LINK")
-    private String link;
-    @Column(name = "HIDE", nullable = false)
-    private boolean hide;
-    @OneToMany(mappedBy = "category")
-    private Set < Product > products;
+
+    // Constructors, getters and setters
+    public Category() {}
+
+    public Category(String name) {
+        this.name = name;
+    }
+
+    public Long getId() {
+        return id;
+    }
+
+    public void setId(Long id) {
+        this.id = id;
+    }
+
+    public String getName() {
+        return name;
+    }
+
+    public void setName(String name) {
+        this.name = name;
+    }
 }
