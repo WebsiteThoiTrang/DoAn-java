@@ -1,6 +1,6 @@
 <!DOCTYPE html>
 <html xmlns:th="http://www.thymeleaf.org">
-<head th:replace ="admin/fragments/head :: head"></head>
+<head th:replace ="~{admin/fragments/head :: head}"></head>
 
 <body class="bg-theme bg-theme1">
 
@@ -8,11 +8,11 @@
 <div id="wrapper">
 
     <!--Start sidebar-wrapper-->
-    <sidebar th:replace ="admin/fragments/sidebar :: sidebar"></sidebar>
+    <sidebar th:replace ="~{admin/fragments/sidebar :: sidebar}"></sidebar>
     <!--End sidebar-wrapper-->
 
     <!--Start topbar header-->
-    <header th:replace ="admin/fragments/header :: header"></header>
+    <header th:replace ="~{admin/fragments/header :: header}"></header>
     <!--End topbar header-->
 
     <div class="clearfix"></div>
