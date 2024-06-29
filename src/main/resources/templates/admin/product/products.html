@@ -1,6 +1,10 @@
+
 <!DOCTYPE html>
-<html xmlns:th="http://www.thymeleaf.org" xmlns="http://www.w3.org/1999/html">
-<head th:replace="~{admin/fragments/head :: head}">
+<html xmlns:th="http://www.thymeleaf.org"
+      xmlns="http://www.w3.org/1999/html"
+      xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+      layout:decorate="~{admin/layout}">
+<head>
     <style>
         .modal-content {
             color: black;
@@ -9,28 +13,12 @@
         .modal-title, .modal-body, .modal-footer {
             color: black;
         }
-        .parent {
-          width: 300px;
-          border: 5px solid red;
-          overflow-x: hidden;
-          float: left;
-        }
-        .child {
-          width: 1000px;
-          float: left;
-          font-size: 15px;
-          font-family: arial;
-          padding: 10px;
-          cursor: pointer;
-        }
+
     </style>
     <title>Products</title>
 </head>
 <body class="bg-theme bg-theme8">
-<div id="wrapper">
-    <sidebar th:replace="~{admin/fragments/sidebar :: sidebar}"></sidebar>
-    <header th:replace="~{admin/fragments/header :: header}"></header>
-    <div class="clearfix"></div>
+<section layout:fragment="content">
     <div class="content-wrapper">
         <div class="container-fluid">
             <div class="container mt-3">
@@ -175,113 +163,95 @@
 
         </div>
     </div>
-
-    <footer class="footer">
-        <div class="container">
-            <div class="text-center">
-                Copyright © 2018 Dashtreme Admin
-            </div>
-        </div>
-    </footer>
-</div>
-
-<!-- Scripts -->
-<script th:src="@{assets/js/jquery.min.js}"></script>
-<script th:src="@{assets/js/popper.min.js}"></script>
-<script th:src="@{assets/js/bootstrap.min.js}"></script>
-<script th:src="@{assets/plugins/simplebar/js/simplebar.js}"></script>
-<script th:src="@{assets/js/sidebar-menu.js}"></script>
-<script th:src="@{assets/js/jquery.loading-indicator.js}"></script>
-<script th:src="@{assets/js/app-script.js}"></script>
-<script th:src="@{assets/plugins/Chart.js/Chart.min.js}"></script>
-<script th:src="@{assets/js/index.js}"></script>
-
-<script>
-    // Sorting function
-    function sortTable(columnIndex) {
-        const table = document.getElementById("productsTable");
-        let rows, switching, i, x, y, shouldSwitch, dir, switchCount = 0;
-        switching = true;
-        dir = "asc";
-        while (switching) {
-            switching = false;
-            rows = table.rows;
-            for (i = 1; i < (rows.length - 1); i++) {
-                shouldSwitch = false;
-                x = rows[i].getElementsByTagName("TD")[columnIndex];
-                y = rows[i + 1].getElementsByTagName("TD")[columnIndex];
-                if (dir === "asc") {
-                    if (x.innerHTML.toLowerCase() > y.innerHTML.toLowerCase()) {
-                        shouldSwitch = true;
-                        break;
-                    }
-                } else if (dir === "desc") {
-                    if (x.innerHTML.toLowerCase() < y.innerHTML.toLowerCase()) {
-                        shouldSwitch = true;
-                        break;
+    <script>
+        // Sorting function
+        function sortTable(columnIndex) {
+            const table = document.getElementById("productsTable");
+            let rows, switching, i, x, y, shouldSwitch, dir, switchCount = 0;
+            switching = true;
+            dir = "asc";
+            while (switching) {
+                switching = false;
+                rows = table.rows;
+                for (i = 1; i < (rows.length - 1); i++) {
+                    shouldSwitch = false;
+                    x = rows[i].getElementsByTagName("TD")[columnIndex];
+                    y = rows[i + 1].getElementsByTagName("TD")[columnIndex];
+                    if (dir === "asc") {
+                        if (x.innerHTML.toLowerCase() > y.innerHTML.toLowerCase()) {
+                            shouldSwitch = true;
+                            break;
+                        }
+                    } else if (dir === "desc") {
+                        if (x.innerHTML.toLowerCase() < y.innerHTML.toLowerCase()) {
+                            shouldSwitch = true;
+                            break;
+                        }
                     }
                 }
-            }
-            if (shouldSwitch) {
-                rows[i].parentNode.insertBefore(rows[i + 1], rows[i]);
-                switching = true;
-                switchCount++;
-            } else {
-                if (switchCount === 0 && dir === "asc") {
-                    dir = "desc";
+                if (shouldSwitch) {
+                    rows[i].parentNode.insertBefore(rows[i + 1], rows[i]);
                     switching = true;
+                    switchCount++;
+                } else {
+                    if (switchCount === 0 && dir === "asc") {
+                        dir = "desc";
+                        switching = true;
+                    }
                 }
             }
         }
-    }
 
-    // Searching function
-    document.getElementById("searchInput").addEventListener("keyup", function() {
-        const filter = this.value.toLowerCase();
-        const rows = document.getElementById("productsTableBody").getElementsByTagName("tr");
-        for (let i = 0; i < rows.length; i++) {
-            const cells = rows[i].getElementsByTagName("td");
-            let matches = false;
-            for (let j = 0; j < cells.length; j++) {
-                if (cells[j].innerHTML.toLowerCase().includes(filter)) {
-                    matches = true;
-                    break;
+        // Searching function
+        document.getElementById("searchInput").addEventListener("keyup", function() {
+            const filter = this.value.toLowerCase();
+            const rows = document.getElementById("productsTableBody").getElementsByTagName("tr");
+            for (let i = 0; i < rows.length; i++) {
+                const cells = rows[i].getElementsByTagName("td");
+                let matches = false;
+                for (let j = 0; j < cells.length; j++) {
+                    if (cells[j].innerHTML.toLowerCase().includes(filter)) {
+                        matches = true;
+                        break;
+                    }
                 }
+                rows[i].style.display = matches ? "" : "none";
             }
-            rows[i].style.display = matches ? "" : "none";
+        });
+
+        // Show add product modal
+        function openAddProductModal() {
+            $('#addProductModal').modal('show');
         }
-    });
 
-    // Show add product modal
-    function openAddProductModal() {
-        $('#addProductModal').modal('show');
-    }
+        // Show edit product modal
+        function openEditProductModal(id) {
+            $.get('/products/getById/' + id, function(data) {
+                if (data) {
+                    $('#editProductId').val(data.id);
+                    $('#editProductName').val(data.name);
+                    $('#editProductModal').modal('show');
+                    $('#editProductDescription').val(data.description);
+                    $('#editProductPrice').val(data.price);
+                    $('#editProductSize').val(data.size);
+                    $('#editProductQuantity').val(data.quantity);
+                    $('#editProductImageFile').val('');
+                    $('#editProductCategory').val(data.category.id);
+                    var timestamp = new Date().getTime();
+                    $('#editProductImage').attr('src', data.imageUrl + '?v=' + timestamp);
+                } else {
+                    alert('Product not found!');
+                }
+            }).fail(function() {
+                alert('Error fetching product data');
+            });
+            $.ajaxSetup({
+                cache: false
+            });
+        }
+    </script>
 
-    // Show edit product modal
-    function openEditProductModal(id) {
-        $.get('/products/getById/' + id, function(data) {
-            if (data) {
-                $('#editProductId').val(data.id);
-                $('#editProductName').val(data.name);
-                $('#editProductModal').modal('show');
-                $('#editProductDescription').val(data.description);
-                $('#editProductPrice').val(data.price);
-                $('#editProductSize').val(data.size);
-                $('#editProductQuantity').val(data.quantity);
-                $('#editProductImageFile').val('');
-                $('#editProductCategory').val(data.category.id);
-                var timestamp = new Date().getTime();
-                $('#editProductImage').attr('src', data.imageUrl + '?v=' + timestamp);
-            } else {
-                alert('Product not found!');
-            }
-        }).fail(function() {
-            alert('Error fetching product data');
-        });
-        $.ajaxSetup({
-            cache: false
-        });
-    }
-</script>
+</section>
+
 </body>
 </html>
