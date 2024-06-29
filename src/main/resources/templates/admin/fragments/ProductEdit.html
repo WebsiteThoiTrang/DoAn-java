@@ -1,0 +1,45 @@
+
+<div class="ProductEdit" th:fragment="ProductEdit" xmlns:th="http://www.thymeleaf.org">
+    <div class="content-wrapper">
+        <div class="container-fluid">
+            <div class="container mt-3">
+                <h1>Edit Product</h1>
+                <form th:action="@{/products/edit}" method="post" enctype="multipart/form-data">
+                    <input type="hidden" th:value="${product.id}" name="id">
+                    <div class="form-group">
+                        <label for="editProductName">Name</label>
+                        <input type="text" class="form-control" id="editProductName" name="name" th:value="${product.name}" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="editProductDescription">Description</label>
+                        <textarea class="form-control" id="editProductDescription" name="description" required th:text="${product.description}"></textarea>
+                    </div>
+                    <div class="form-group">
+                        <label for="editProductPrice">Price</label>
+                        <input type="number" step="0.01" class="form-control" id="editProductPrice" name="price" th:value="${product.price}" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="editProductSize">Size</label>
+                        <input type="text" class="form-control" id="editProductSize" name="size" th:value="${product.size}" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="editProductQuantity">Quantity</label>
+                        <input type="number" class="form-control" id="editProductQuantity" name="quantity" th:value="${product.quantity}" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="editProductImageFile">Image URL</label>
+                        <input type="file" class="form-control" id="editProductImageFile" name="imageFile" accept="image/*">
+                        <img th:src="@{${product.imageUrl}}" alt="Product Image" width="100">
+                    </div>
+                    <div class="form-group">
+                        <label for="editProductCategory">Category</label>
+                        <select class="form-control" id="editProductCategory" name="category.id" required>
+                            <option th:each="category : ${categories}" th:value="${category.id}" th:selected="${category.id} == ${product.category.id}" th:text="${category.name}">Category Name</option>
+                        </select>
+                    </div>
+                    <button type="submit" class="btn btn-primary">Save Changes</button>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
