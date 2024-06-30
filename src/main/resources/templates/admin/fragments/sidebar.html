@@ -1,7 +1,8 @@
-<div id="sidebar-wrapper" data-simplebar="" data-simplebar-auto-hide="true" th:fragment="sidebar" xmlns:th="http://www.thymeleaf.org">
+    <div id="sidebar-wrapper" data-simplebar="" data-simplebar-auto-hide="true" th:fragment="sidebar"
+         xmlns:th="http://www.thymeleaf.org">
     <div class="brand-logo">
         <a th:href="@{/home}">
-            <img th:src="@{assets/images/logo-icon.png}" class="logo-icon" alt="logo icon">
+            <img th:src="@{/assets/images/logo-icon.png}" class="logo-icon" alt="logo icon">
             <h5 class="logo-text">Dashtreme Admin</h5>
         </a>
     </div>
@@ -38,13 +39,13 @@
         </li>
 
         <li>
-            <a href="">
+            <a th:href="@{contactad}">
                 <i class="zmdi zmdi-format-list-bulleted"></i> <span>Quản lí liên hệ</span>
             </a>
         </li>
 
         <li>
-            <a href="">
+            <a th:href="@{blogad}">
                 <i class="zmdi zmdi-format-list-bulleted"></i> <span>Quản lí bài viết</span>
             </a>
         </li>
@@ -55,7 +56,7 @@
         </li>
 
         <li>
-            <a href="register.html" target="_blank">
+            <a href="" target="_blank">
                 <i class="zmdi zmdi-account-circle"></i> <span>Registration</span>
             </a>
         </li>
