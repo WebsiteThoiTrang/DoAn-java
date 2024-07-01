@@ -1,4 +1,5 @@
-<header class="header" th:fragment="header" xmlns:th="http://www.thymeleaf.org">
+<header class="header" th:fragment="header" xmlns:th="http://www.thymeleaf.org"
+        xmlns:sec="http://www.thymeleaf.org/extras/spring-security5">
     <div class="header__top">
         <div class="container">
             <div class="row">
@@ -56,6 +57,7 @@
                         </li>-->
                         <li><a th:href="@{blog}">Blog</a></li>
                         <li><a th:href="@{contact}">Contacts</a></li>
+                        <li sec:authorize="hasAuthority('ADMIN')"><a th:href="@{admin}" >Admin</a></li>
                     </ul>
                 </nav>
             </div>
