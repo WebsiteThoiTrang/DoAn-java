@@ -2,7 +2,9 @@
 <!DOCTYPE html>
 <html lang="zxx" xmlns:th="http://www.thymeleaf.org">
 
-<head th:replace ="layout/fragments/head :: head" ></head>
+<head th:replace ="layout/fragments/head :: head" >
+        
+</head>
 
 <!-- Header Section Begin -->
 <header th:replace="layout/fragments/header :: header"></header>
@@ -220,7 +222,7 @@
                         <div class="product__item">
                             <div class="product__item__pic set-bg" >
                                 <div>
-                                    <img th:src="${product.imageUrl}" />
+                                    <img th:src="${product.imageUrl}"/>
                                 </div>
                                 <ul class="product__hover">
                                     <li><a href="#"><img th:src="@{root/img/icon/heart.png}" alt=""></a></li>
