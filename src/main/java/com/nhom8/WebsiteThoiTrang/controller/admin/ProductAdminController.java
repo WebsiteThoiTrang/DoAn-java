@@ -6,14 +6,17 @@ import com.nhom8.WebsiteThoiTrang.service.admin.CategoryService;
 import com.nhom8.WebsiteThoiTrang.service.admin.ProductService;
 import jakarta.validation.Valid;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.core.io.ClassPathResource;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.util.StringUtils;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.multipart.MultipartFile;
 import org.springframework.beans.factory.annotation.Value;
 
+import java.io.File;
 import java.io.IOException;
 import java.nio.file.Files;
 import java.nio.file.Path;
@@ -49,13 +52,13 @@ public class ProductAdminController {
         List<Category> categories = categoryService.getAllCategories();
         model.addAttribute("product", new Product());
         model.addAttribute("categories", categories);
-        return "admin/product/add-product";
+        return "admin/product/product-edit";
     }
 
     @PostMapping("/add")
     public String addProduct(@Valid Product product, BindingResult result, @RequestParam("imageFile") MultipartFile imageFile) {
         if (result.hasErrors()) {
-            return "admin/product/add-product";
+            return "admin/product/product-edit";
         }
 
         if (!imageFile.isEmpty()) {
@@ -158,7 +161,6 @@ public class ProductAdminController {
         if (imageFile.isEmpty()) {
             return null;
         }
-
         byte[] bytes = imageFile.getBytes();
         String uniqueFileName = UUID.randomUUID().toString() + "_" + imageFile.getOriginalFilename();
         Path path = Paths.get(uploadFolder + uniqueFileName);
