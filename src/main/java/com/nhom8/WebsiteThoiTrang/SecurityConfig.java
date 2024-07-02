@@ -46,6 +46,7 @@ public class SecurityConfig {
                         .permitAll() // Cho phép truy cập không cần xác thực.
                         .requestMatchers("/admin/**", "/categories/**","/products/**")
                         .hasAnyAuthority("ADMIN" ,"IT") // Chỉ cho phép ADMIN truy cập.
+
                         .requestMatchers("/api/**")
                         .permitAll() // API mở cho mọi người dùng.
                         .anyRequest().authenticated() // Bất kỳ yêu cầu nào khác cần xác thực.
