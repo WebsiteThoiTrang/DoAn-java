@@ -8,6 +8,7 @@
 <header th:replace="layout/fragments/header :: header"></header>
 <!-- Header Section End -->
 
+
 <body>
 <!-- Breadcrumb Section Begin -->
 <section class="breadcrumb-option">
@@ -47,17 +48,14 @@
                                 </div>
                                 <div id="collapseOne" class="collapse show" data-parent="#accordionExample">
                                     <div class="card-body">
-                                        <div class="shop__sidebar__categories">
+                                        <div class="shop__sidebar__categories" >
                                             <ul class="nice-scroll">
-                                                <li><a href="#">Men (20)</a></li>
-                                                <li><a href="#">Women (20)</a></li>
-                                                <li><a href="#">Bags (20)</a></li>
-                                                <li><a href="#">Clothing (20)</a></li>
-                                                <li><a href="#">Shoes (20)</a></li>
-                                                <li><a href="#">Accessories (20)</a></li>
-                                                <li><a href="#">Kids (20)</a></li>
-                                                <li><a href="#">Kids (20)</a></li>
-                                                <li><a href="#">Kids (20)</a></li>
+                                                <li><a href="#">Men </a></li>
+                                                <li><a href="#">Women </a></li>
+                                                <li><a href="#">Bags </a></li>
+                                                <li><a href="#">Clothing </a></li>
+                                                <li><a href="#">Shoes </a></li>
+
                                             </ul>
                                         </div>
                                     </div>
@@ -75,25 +73,6 @@
                                                 <li><a href="#">Chanel</a></li>
                                                 <li><a href="#">Hermes</a></li>
                                                 <li><a href="#">Gucci</a></li>
-                                            </ul>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="card">
-                                <div class="card-heading">
-                                    <a data-toggle="collapse" data-target="#collapseThree">Filter Price</a>
-                                </div>
-                                <div id="collapseThree" class="collapse show" data-parent="#accordionExample">
-                                    <div class="card-body">
-                                        <div class="shop__sidebar__price">
-                                            <ul>
-                                                <li><a href="#">$0.00 - $50.00</a></li>
-                                                <li><a href="#">$50.00 - $100.00</a></li>
-                                                <li><a href="#">$100.00 - $150.00</a></li>
-                                                <li><a href="#">$150.00 - $200.00</a></li>
-                                                <li><a href="#">$200.00 - $250.00</a></li>
-                                                <li><a href="#">250.00+</a></li>
                                             </ul>
                                         </div>
                                     </div>
@@ -172,24 +151,7 @@
                                     </div>
                                 </div>
                             </div>
-                            <div class="card">
-                                <div class="card-heading">
-                                    <a data-toggle="collapse" data-target="#collapseSix">Tags</a>
-                                </div>
-                                <div id="collapseSix" class="collapse show" data-parent="#accordionExample">
-                                    <div class="card-body">
-                                        <div class="shop__sidebar__tags">
-                                            <a href="#">Product</a>
-                                            <a href="#">Bags</a>
-                                            <a href="#">Shoes</a>
-                                            <a href="#">Fashio</a>
-                                            <a href="#">Clothing</a>
-                                            <a href="#">Hats</a>
-                                            <a href="#">Accessories</a>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
+
                         </div>
                     </div>
                 </div>
@@ -198,9 +160,6 @@
                 <div class="shop__product__option">
                     <div class="row">
                         <div class="col-lg-6 col-md-6 col-sm-6">
-                            <div class="shop__product__option__left">
-                                <p>Showing 1–12 of 126 results</p>
-                            </div>
                         </div>
                         <div class="col-lg-6 col-md-6 col-sm-6">
                             <div class="shop__product__option__right">
@@ -220,18 +179,24 @@
                         <div class="product__item">
                             <div class="product__item__pic set-bg" >
                                 <div>
+                                    <a th:href="@{/product/detail(id=${product.id})}">
+
                                     <img th:src="${product.imageUrl}" />
+                                    </a>
+
                                 </div>
                                 <ul class="product__hover">
-                                    <li><a href="#"><img th:src="@{root/img/icon/heart.png}" alt=""></a></li>
-                                    <li><a href="#"><img th:src="@{root/img/icon/compare.png}" alt=""> <span>Compare</span></a>
+                                    <li><a href="#"><img th:src="@{/root/img/icon/heart.png}" alt=""></a></li>
+                                    <li><a href="#"><img th:src="@{/root/img/icon/compare.png}" alt=""> <span>Compare</span></a>
                                     </li>
-                                    <li><a href="#"><img th:src="@{root/img/icon/search.png}" alt=""></a></li>
+                                    <li><a href="#"><img th:src="@{/root/img/icon/search.png}" alt=""></a></li>
                                 </ul>
                             </div>
                             <div class="product__item__text">
                                 <h6 th:text="${product.name}"></h6>
-                                <a href="#" class="add-cart">+ Add To Cart</a>
+
+                                    <a th:href="@{/cart}" class="add-cart">+ Add To Cart</a>
+
                                 <div class="rating">
                                     <i class="fa fa-star-o"></i>
                                     <i class="fa fa-star-o"></i>
@@ -239,7 +204,7 @@
                                     <i class="fa fa-star-o"></i>
                                     <i class="fa fa-star-o"></i>
                                 </div>
-                                <h5 th:text="${product.price}"></h5>
+                                <h5 th:text="${product.price + ' VND'}"></h5>
 
                             </div>
                         </div>
@@ -281,16 +246,16 @@
 <!-- Search End -->
 
 <!-- Js Plugins -->
-<script th:src="@{root/js/jquery-3.3.1.min.js}"></script>
-<script th:src="@{root/js/bootstrap.min.js}"></script>
-<script th:src="@{root/js/jquery.nice-select.min.js}"></script>
-<script th:src="@{root/js/jquery.nicescroll.min.js}"></script>
-<script th:src="@{root/js/jquery.magnific-popup.min.js}"></script>
-<script th:src="@{root/js/jquery.countdown.min.js}"></script>
-<script th:src="@{root/js/jquery.slicknav.js}"></script>
-<script th:src="@{root/js/mixitup.min.js}"></script>
-<script th:src="@{root/js/owl.carousel.min.js}"></script>
-<script th:src="@{root/js/main.js}"></script>
+<script th:src="@{/root/js/jquery-3.3.1.min.js}"></script>
+<script th:src="@{/root/js/bootstrap.min.js}"></script>
+<script th:src="@{/root/js/jquery.nice-select.min.js}"></script>
+<script th:src="@{/root/js/jquery.nicescroll.min.js}"></script>
+<script th:src="@{/root/js/jquery.magnific-popup.min.js}"></script>
+<script th:src="@{/root/js/jquery.countdown.min.js}"></script>
+<script th:src="@{/root/js/jquery.slicknav.js}"></script>
+<script th:src="@{/root/js/mixitup.min.js}"></script>
+<script th:src="@{/root/js/owl.carousel.min.js}"></script>
+<script th:src="@{/root/js/main.js}"></script>
 </body>
 
 </html>
