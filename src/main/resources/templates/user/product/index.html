@@ -1,6 +1,6 @@
 
 <!DOCTYPE html>
-<html lang="zxx" xmlns:th="http://www.thymeleaf.org">
+<html lang="zxx" xmlns:th="http://www.thymeleaf.org" xmlns:sec="http://www.w3.org/1999/xhtml">
 
 <head th:replace ="layout/fragments/head :: head" ></head>
 
@@ -231,7 +231,12 @@
                             </div>
                             <div class="product__item__text">
                                 <h6 th:text="${product.name}"></h6>
-                                <a href="#" class="add-cart">+ Add To Cart</a>
+                                <form th:action="@{/cart/add}" method="post" sec:authorize="isAuthenticated()">
+                                    <input type="number" name="quantity" min="1" value="1" class="form-control d-inline-block"
+                                           style="width: 70px;">
+                                    <input type="hidden" th:value="${product.id}" name="productId"/>
+                                    <button type="submit" class="btn btn-warning btn-sm">Thêm Vào Giỏ</button>
+                                </form>
                                 <div class="rating">
                                     <i class="fa fa-star-o"></i>
                                     <i class="fa fa-star-o"></i>
