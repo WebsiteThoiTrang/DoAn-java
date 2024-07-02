@@ -18,19 +18,46 @@
                     .header__top__links .fa-user-o {
                     margin-right: 5px;
                     }
+                    .header__top__right {
+                    display: flex;
+                    align-items: center;
+                    justify-content: flex-end;
+                    }
+
+                    .header__top__links {
+                        margin-right: 10px;
+                    }
+
+                    .nav {
+                        display: flex;
+                        align-items: center;
+                        list-style-type: none;
+                        padding-left: 0;
+                    }
+
+                    .nav-item {
+                        margin-left: 10px;
+                    }
 
                 </style>
                 <div class="col-lg-6 col-md-5">
                     <div class="header__top__right">
-                        <div class="header__top__links">
-                            <a th:href="@{login}"><i class="fa fa-user-o"></i>My Account</a>
+                        <div class="header__top__links" sec:authorize="isAuthenticated()">
+                            <a><i class="fa fa-user-o" sec:authentication="name"></i></a>
                         </div>
-                        <div class="header__top__hover">
-                            <span>VND<i class=""></i></span>
-                        </div>
+                        <ul class="nav">
+                            <li class="nav-item" sec:authorize="isAuthenticated()">
+                                <form th:action="@{/logout}" method="post" class="form-inline">
+                                    <button class="btn btn-outline-light" type="submit">Logout</button>
+                                </form>
+                            </li>
+                            <li class="nav-item" sec:authorize="!isAuthenticated()">
+                                <a class="btn btn-outline-light" href="/login">Login</a>
+                            </li>
+                        </ul>
                     </div>
-
                 </div>
+
             </div>
         </div>
     </div>

@@ -42,10 +42,10 @@ public class SecurityConfig {
     public SecurityFilterChain securityFilterChain (@NotNull HttpSecurity http) throws Exception {
         return http
                 .authorizeHttpRequests(auth -> auth
-                        .requestMatchers("/css/**", "/js/**", "/", "/oauth/**","/root/**","/assets/**", "/register", "/error", "/cart", "/cart/**", "/home" , "/login")
+                        .requestMatchers("/css/**", "/js/**", "/", "/oauth/**","/root/**","/assets/**", "/register", "/error", "/blog","/contact", "/cart/**", "/home" , "/login","/product")
                         .permitAll() // Cho phép truy cập không cần xác thực.
-                        .requestMatchers("/admin/**", "/categories/**")
-                        .hasAnyAuthority("ADMIN" ) // Chỉ cho phép ADMIN truy cập.
+                        .requestMatchers("/admin/**", "/categories/**","/products/**")
+                        .hasAnyAuthority("ADMIN" ,"IT") // Chỉ cho phép ADMIN truy cập.
                         .requestMatchers("/api/**")
                         .permitAll() // API mở cho mọi người dùng.
                         .anyRequest().authenticated() // Bất kỳ yêu cầu nào khác cần xác thực.
