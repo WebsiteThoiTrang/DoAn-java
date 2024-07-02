@@ -18,7 +18,7 @@
                 <div class="breadcrumb__text">
                     <h4>Shop</h4>
                     <div class="breadcrumb__links">
-                        <a href="index.html">Home</a>
+                        <a th:href="@{/}">Home</a>
                         <span>Product</span>
                     </div>
                 </div>
@@ -35,8 +35,8 @@
             <div class="col-lg-3">
                 <div class="shop__sidebar">
                     <div class="shop__sidebar__search">
-                        <form action="#">
-                            <input type="text" placeholder="Search...">
+                        <form th:action="@{/search}" method="get">
+                            <input type="text" name="query" placeholder="Search...">
                             <button type="submit"><span class="icon_search"></span></button>
                         </form>
                     </div>

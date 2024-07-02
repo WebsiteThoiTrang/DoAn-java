@@ -14,12 +14,12 @@ import java.util.List;
 
 @Controller
 @AllArgsConstructor
-@RequestMapping("/product")
+//@RequestMapping("/product")
 public class ProductController {
     @Autowired
     private final ProductService productService;
 
-    @GetMapping()
+    @GetMapping("/product")
     public String home(Model model) {
         List<Product> getAllProducts = productService.getAllProducts();
         model.addAttribute("products",getAllProducts);
@@ -32,12 +32,20 @@ public class ProductController {
 //        return "/user/product/detail";
 //    }
 
-    @GetMapping("/detail")
+    @GetMapping("product/detail")
     public String showProductDetail(@RequestParam("id") Long id, Model model) {
         // Retrieve product details from the service based on productId
         Product product = productService.getProductById(id);
         // Add product object to the model to be accessed by Thymeleaf template
         model.addAttribute("product", product);
         return "/user/product/detail"; // Returns the name of the Thymeleaf template (productDetail.html)
+    }
+
+
+    @GetMapping("/search")
+    public String searchProducts(@RequestParam("query") String query, Model model) {
+        List<Product> products = productService.searchProductsByName(query);
+        model.addAttribute("products", products);
+        return "/user/product/index"; // Trả về tên view tương ứng
     }
 }
