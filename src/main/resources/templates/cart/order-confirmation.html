@@ -1,10 +1,64 @@
 <!DOCTYPE html>
-<html xmlns:th="http://www.thymeleaf.org">
+<html lang="vi" xmlns:th="http://www.w3.org/1999/xhtml">
 <head>
-    <title>Order Confirmation</title>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Thanh toán thành công!</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            margin: 0;
+            background-color: #f9f9f9;
+        }
+        .container {
+            text-align: center;
+            background: white;
+            padding: 40px;
+            border-radius: 10px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+        }
+        .container .icon {
+            font-size: 48px;
+            color: green;
+        }
+        .container h1 {
+            font-size: 24px;
+            margin: 20px 0;
+            color: #333;
+        }
+        .container p {
+            font-size: 16px;
+            color: #666;
+            margin: 10px 0;
+        }
+        .container .back-button {
+            display: inline-block;
+            margin-top: 20px;
+            padding: 10px 20px;
+            font-size: 16px;
+            color: green;
+            border: 2px solid green;
+            border-radius: 5px;
+            text-decoration: none;
+            transition: background-color 0.3s, color 0.3s;
+        }
+        .container .back-button:hover {
+            background-color: green;
+            color: white;
+        }
+    </style>
 </head>
 <body>
-<h1>Order Confirmation</h1>
-<p th:text="${message}"></p>
+<div class="container">
+    <div class="icon">&#10003;</div>
+    <h1>Thanh toán thành công!</h1>
+    <p>Giao dịch của bạn đã được xử lý thành công.</p>
+    <p>Cảm ơn bạn đã mua hàng. Chúng tôi sẽ gửi xác nhận và chi tiết đơn hàng qua email của bạn.</p>
+    <a th:href="@{~/home}" class="back-button">Quay về trang chủ</a>
+</div>
 </body>
 </html>
